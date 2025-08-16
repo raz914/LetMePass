@@ -21,15 +21,15 @@ class SoundManager {
 
   initializeAudio() {
     // Initialize background music
-    this.backgroundMusic = new Audio('/music/gameMusic.mp3');
+    this.backgroundMusic = new Audio('./music/gameMusic.mp3');
     this.backgroundMusic.loop = true;
     this.backgroundMusic.volume = 0.3;
 
     // Initialize sound effects
-    this.clickSound = new Audio('/sounds/click.mp3');
+    this.clickSound = new Audio('./sounds/click.mp3');
     this.clickSound.volume = 0.5;
 
-    this.popSound = new Audio('/sounds/pop.mp3');
+    this.popSound = new Audio('./sounds/pop.mp3');
     this.popSound.volume = 0.4;
 
     // Preload audio files
@@ -39,9 +39,9 @@ class SoundManager {
   preloadAudio() {
     // Preload all audio files to prevent delays
     const audioFiles = [
-      '/music/gameMusic.mp3',
-      '/sounds/click.mp3',
-      '/sounds/pop.mp3'
+      './music/gameMusic.mp3',
+      './sounds/click.mp3',
+      './sounds/pop.mp3'
     ];
 
     audioFiles.forEach(file => {

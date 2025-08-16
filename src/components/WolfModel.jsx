@@ -12,10 +12,10 @@ function WolfModel({ scale = 0.01, position = [-3.5, 1.1, 0], rotation = [0, 2, 
   console.log('🐺 WolfModel Props:', { scale, position, rotation })
   
   // Load all animation files
-  const idleWolf = useFBX('/wolfModel/idleWolf.fbx')
-  const angryWolf = useFBX('/wolfModel/Angry.fbx')
-  const wavingWolf = useFBX('/wolfModel/Waving.fbx')
-  const defeatedWolf = useFBX('/wolfModel/Defeated.fbx')
+  const idleWolf = useFBX('./wolfModel/idleWolf.fbx')
+  const angryWolf = useFBX('./wolfModel/Angry.fbx')
+  const wavingWolf = useFBX('./wolfModel/Waving.fbx')
+  const defeatedWolf = useFBX('./wolfModel/Defeated.fbx')
 
   // Create unique animations by renaming them
   const processAnimations = (animations, prefix) => {

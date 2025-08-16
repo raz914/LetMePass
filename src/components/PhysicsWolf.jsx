@@ -19,9 +19,9 @@ function PhysicsWolf({ scale = 0.005, position = [-5.5, 3, 0], defeatSequence = 
   }))
   
   // Load all animation files
-  const idleWolf = useFBX('/wolfModel/idleWolf.fbx')
-  const angryWolf = useFBX('/wolfModel/Angry.fbx')
-  const wavingWolf = useFBX('/wolfModel/Waving.fbx')
+  const idleWolf = useFBX('./wolfModel/idleWolf.fbx')
+  const angryWolf = useFBX('./wolfModel/Angry.fbx')
+  const wavingWolf = useFBX('./wolfModel/Waving.fbx')
 
   // Create unique animations by renaming them
   const processAnimations = (animations, prefix) => {

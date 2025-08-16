@@ -88,7 +88,7 @@ function ThreeScene({ onLoadComplete }) {
       </Suspense>
 
       {/* Environment and Shadows */}
-      <Environment files="/scene.hdr" />
+      <Environment files="./scene.hdr" />
       <ContactShadows
         position={[0, -1.4, 0]}
         opacity={0.75}

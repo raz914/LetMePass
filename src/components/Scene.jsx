@@ -10,7 +10,7 @@ import CodeBridge from './CodeBridge'
 import { useGame } from './GameContext'
 
 function GandalfModel() {
-  const { scene } = useGLTF('/forGandalf.glb')
+  const { scene } = useGLTF('./forGandalf.glb')
 
   return (
     <primitive

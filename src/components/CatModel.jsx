@@ -16,7 +16,7 @@ function CatModel({ position = [3, 1.1, -0.9], isMoving = false, targetPosition 
   const prevDefeatSequenceRef = useRef(false)
   
   // Load the cat model
-  const { scene, animations } = useGLTF('/catModel/somali_cat_animated_ver_1.2.glb')
+  const { scene, animations } = useGLTF('./catModel/somali_cat_animated_ver_1.2.glb')
   const { actions } = useAnimations(animations, group)
 
   // Console log all available animations
@@ -188,6 +188,6 @@ function CatModel({ position = [3, 1.1, -0.9], isMoving = false, targetPosition 
 }
 
 // Preload the model
-useGLTF.preload('/catModel/somali_cat_animated_ver_1.2.glb')
+useGLTF.preload('./catModel/somali_cat_animated_ver_1.2.glb')
 
 export default CatModel 

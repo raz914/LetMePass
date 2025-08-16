@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Settings from './Settings'
 import soundManager from '../services/soundManager'
+import Player2ApiCheck from './Player2ApiCheck'
+import { checkApiAvailability } from '../services/apiCheck'
+import Toast from './Toast'
 
 function StartScreen({ onStartGame }) {
   const [showHowToPlay, setShowHowToPlay] = useState(false)
   const [showAbout, setShowAbout] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
+  const [showApiCheck, setShowApiCheck] = useState(false)
+  const [isApiAvailable, setIsApiAvailable] = useState(false)
+  const [showToast, setShowToast] = useState(false)
 
   // Start background music when start screen loads
   useEffect(() => {
@@ -21,12 +27,39 @@ function StartScreen({ onStartGame }) {
     }
 
     startMusic()
+    
+    // Check Player2 API availability
+    const checkApi = async () => {
+      const available = await checkApiAvailability()
+      setIsApiAvailable(available)
+      
+      // If API is available, show toast; otherwise show modal
+      if (available) {
+        setShowToast(true)
+      } else {
+        setShowApiCheck(true)
+      }
+    }
+    
+    checkApi()
   }, [])
 
   const handlePlayClick = () => {
     // Play click sound when starting game
     soundManager.playClickSound()
+    
+    // If API is not available, show the check modal
+    if (!isApiAvailable) {
+      setShowApiCheck(true)
+      return
+    }
+    
     onStartGame()
+  }
+  
+  const handleApiCheckClose = (apiAvailable) => {
+    setIsApiAvailable(apiAvailable)
+    setShowApiCheck(false)
   }
 
   const HowToPlayModal = () => (
@@ -188,7 +221,7 @@ function StartScreen({ onStartGame }) {
           <div className="space-y-4">
             <button
               onClick={handlePlayClick}
-              className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xl font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border-2 border-emerald-300"
+              className={`w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xl font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border-2 border-emerald-300 ${!isApiAvailable ? 'opacity-50 filter blur-[1px] cursor-not-allowed' : ''}`}
             >
               🎮 PLAY GAME
             </button>
@@ -226,6 +259,14 @@ function StartScreen({ onStartGame }) {
       {showHowToPlay && <HowToPlayModal />}
       {showAbout && <AboutModal />}
       <Settings isVisible={showSettings} onClose={() => setShowSettings(false)} />
+      <Player2ApiCheck isVisible={showApiCheck} onClose={handleApiCheckClose} />
+      {showToast && (
+        <Toast 
+          message="Player2 API connected successfully!" 
+          type="success" 
+          onClose={() => setShowToast(false)} 
+        />
+      )}
     </>
   )
 }

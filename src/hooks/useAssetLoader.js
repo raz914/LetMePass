@@ -7,16 +7,16 @@ import * as THREE from 'three'
 // Define all game assets that need to be preloaded
 const GAME_ASSETS = [
   // GLTF Models
-  { type: 'gltf', url: '/forGandalf.glb', name: 'gandalf' },
-  { type: 'gltf', url: '/catModel/somali_cat_animated_ver_1.2.glb', name: 'cat' },
+  { type: 'gltf', url: './forGandalf.glb', name: 'gandalf' },
+  { type: 'gltf', url: './catModel/somali_cat_animated_ver_1.2.glb', name: 'cat' },
   
   // Wolf FBX Models
-  { type: 'fbx', url: '/wolfModel/idleWolf.fbx', name: 'wolf_idle' },
-  { type: 'fbx', url: '/wolfModel/Angry.fbx', name: 'wolf_angry' },
-  { type: 'fbx', url: '/wolfModel/Waving.fbx', name: 'wolf_waving' },
-  { type: 'fbx', url: '/wolfModel/Defeated.fbx', name: 'wolf_defeated' },
-  { type: 'fbx', url: '/wolfModel/Sitting Dazed.fbx', name: 'wolf_dazed' },
-  { type: 'fbx', url: '/wolfModel/Sitting Idle.fbx', name: 'wolf_sitting' },
+  { type: 'fbx', url: './wolfModel/idleWolf.fbx', name: 'wolf_idle' },
+  { type: 'fbx', url: './wolfModel/Angry.fbx', name: 'wolf_angry' },
+  { type: 'fbx', url: './wolfModel/Waving.fbx', name: 'wolf_waving' },
+  { type: 'fbx', url: './wolfModel/Defeated.fbx', name: 'wolf_defeated' },
+  { type: 'fbx', url: './wolfModel/Sitting Dazed.fbx', name: 'wolf_dazed' },
+  { type: 'fbx', url: './wolfModel/Sitting Idle.fbx', name: 'wolf_sitting' },
 ]
 
 export function useAssetLoader() {
