@@ -8,8 +8,18 @@ function WolfScaler({ children, baseScale = 0.005, basePosition = [-5.5, 3.25, 0
   const wolfTransform = useMemo(() => {
     
     // Calculate scale growth - starts small and grows linearly
-    // Level 1: base scale, Level 10: 3x base scale
-    const scaleMultiplier = 1 + ((level - 1) * 1.70) // Grows by 25% per level
+    // Level 1-2: default size
+    // Level 3-6: 3x original size
+    // Level 7+: 6x original size
+    let scaleMultiplier;
+    if (level >= 7) {
+      scaleMultiplier = 4.5;
+    } else if (level >= 3) {
+      scaleMultiplier = 3;
+    } else {
+      scaleMultiplier = 1; // Default size for levels 1-2
+    }
+
     const currentScale = Math.max(baseScale * scaleMultiplier, 0.001) // Ensure scale never goes to 0
     
     // No Y offset calculation needed - physics will handle positioning with gravity

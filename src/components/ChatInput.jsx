@@ -7,7 +7,8 @@ const ChatInput = ({
   setInputMessage, 
   onSendMessage, 
   gameState, 
-  isLoading 
+  isLoading,
+  getMaxHints
 }) => {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -49,7 +50,13 @@ const ChatInput = ({
     if (gameState.isMoving) {
       return "🚶‍♂️ Cat walking to next level...";
     }
-    return `🐺 Level ${gameState.level}/${gameState.maxLevels} - Wolfy awaits!`;
+    
+    // Add hint information when playing
+    const maxHints = getMaxHints ? getMaxHints() : 3;
+    const hintsRemaining = maxHints - (gameState.hintsUsed || 0);
+    const hintStatus = hintsRemaining > 0 ? `💡 ${hintsRemaining} hints left` : `💡 No hints left`;
+    
+    return `🐺 Level ${gameState.level}/${gameState.maxLevels} - Wolfy awaits! | ${hintStatus}`;
   };
 
   const isInputDisabled = !gameState.isPlaying || isLoading || gameState.bridgeCrossed || gameState.isMoving || gameState.gameOver;

@@ -36,7 +36,6 @@ const GameControls = ({
             </div>
             
             <div className="flex items-center gap-3 text-sm">
-              <div className="text-red-600 font-bold">❤️ {gameState.trustLevel}%</div>
               <div className={`font-bold ${remainingHints === 0 ? 'text-red-600' : remainingHints === 1 ? 'text-orange-600' : 'text-purple-600'}`}>
                 💡 {remainingHints}
               </div>
@@ -67,9 +66,6 @@ const GameControls = ({
               </div>
               
               <div className="flex items-center gap-4 text-sm">
-                <div className="text-center">
-                  <div className="text-red-600 font-bold">❤️ {gameState.trustLevel}%</div>
-                </div>
                 <div className="text-center">
                   <div className={`font-bold ${remainingHints === 0 ? 'text-red-600' : remainingHints === 1 ? 'text-orange-600' : 'text-purple-600'}`}>
                     💡 {gameState.hintsUsed}/{maxHints}

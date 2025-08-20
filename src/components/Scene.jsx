@@ -36,6 +36,7 @@ const WolfSection = memo(({ wolfyVisible, level, defeatSequence }) => {
               scale={wolfTransform.scale}
               position={wolfTransform.position}
               defeatSequence={defeatSequence}
+              level={level}
             />
             <WolfGround position={[-5.5, 1.1, 0]} />
           </>

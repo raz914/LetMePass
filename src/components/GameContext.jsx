@@ -31,7 +31,6 @@ export const GameProvider = ({ children }) => {
     isPlaying: false,
     showStartScreen: true, // Show start screen initially
     victoryType: null,
-    trustLevel: 0,
     hintsUsed: 0,
     gameOver: false,
     showVictoryModal: false,
@@ -62,7 +61,6 @@ export const GameProvider = ({ children }) => {
           catPosition: [newX, prev.catPosition[1], prev.catPosition[2]],
           isMoving: true,
           bridgeCrossed: isFinalVictory,
-          trustLevel: 0, // Reset trust for new level
           // Keep hintsUsed - track total hints used across all levels
           showVictoryModal: false, // Don't show victory modal immediately
           gameOver: isFinalVictory
@@ -256,7 +254,7 @@ export const GameProvider = ({ children }) => {
       isPlaying: false,
       showStartScreen: true,
       victoryType: null,
-      trustLevel: 0,
+
       hintsUsed: 0,
       gameOver: false,
       showVictoryModal: false,
@@ -299,7 +297,7 @@ export const GameProvider = ({ children }) => {
       isPlaying: false,
       showStartScreen: true,
       victoryType: null,
-      trustLevel: 0,
+
       hintsUsed: 0,
       gameOver: false,
       showVictoryModal: false,
