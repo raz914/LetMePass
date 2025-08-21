@@ -51,9 +51,9 @@ export const GameProvider = ({ children }) => {
   const moveToNextLevel = useCallback(() => {
     return new Promise((resolve) => {
       setGameState(prev => {
-        const newLevel = Math.min(prev.level + 1, prev.maxLevels);
+        const newLevel = prev.level + 1;
         const newX = prev.catPosition[0] - (STEP_SIZE); // Move forward (negative X direction)
-        const isFinalVictory = newLevel >= prev.maxLevels;
+        const isFinalVictory = newLevel > prev.maxLevels;
         
         const newState = {
           ...prev,
@@ -117,11 +117,19 @@ export const GameProvider = ({ children }) => {
     // Start countdown timer
     timerRef.current = setInterval(() => {
       setGameState(prev => {
+        // Don't continue timer if game is over, bridge is crossed, or timer should be inactive
+        if (prev.gameOver || prev.bridgeCrossed || !prev.timerActive || !prev.isPlaying) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+          return prev;
+        }
+        
         const newTimeRemaining = prev.timeRemaining - 1000; // Decrease by 1 second
         
         if (newTimeRemaining <= 0) {
           // Time's up! Trigger defeat sequence first, then modal
           clearInterval(timerRef.current);
+          timerRef.current = null;
           
           // Start defeat sequence (wolfy angry animation + cat throw)
           setTimeout(() => {
@@ -183,11 +191,19 @@ export const GameProvider = ({ children }) => {
         // Start countdown timer from current timeRemaining
         timerRef.current = setInterval(() => {
           setGameState(prevState => {
+            // Don't continue timer if game is over, bridge is crossed, or timer should be inactive
+            if (prevState.gameOver || prevState.bridgeCrossed || !prevState.timerActive || !prevState.isPlaying) {
+              clearInterval(timerRef.current);
+              timerRef.current = null;
+              return prevState;
+            }
+            
             const newTimeRemaining = prevState.timeRemaining - 1000; // Decrease by 1 second
             
             if (newTimeRemaining <= 0) {
               // Time's up! Trigger defeat sequence first, then modal
               clearInterval(timerRef.current);
+              timerRef.current = null;
               
               // Start defeat sequence (wolfy angry animation + cat throw)
               setTimeout(() => {
